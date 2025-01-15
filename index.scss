@@ -1,6 +1,9 @@
 @use "./styles/vars" as *;
 @use "./styles/mixins" as *;
-@use "./styles/ProgressBar" as *;
+
+:root {
+  --grey-color: #f2f2f2;
+}
 
 /* Reset and base styles  */
 * {
@@ -9,6 +12,7 @@
   border: none;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
 }
 
 *,
@@ -112,6 +116,105 @@ body {
 
 // app
 
-.root {
+#root {
   height: 100%;
+}
+
+// progressBar
+
+.progressWrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+
+  height: 100%;
+  padding: 16px;
+
+  .progressTitle {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+  }
+
+  .progressBar {
+    .bar {
+      &__circle {
+        transform-origin: center;
+        transform: rotate(-90deg);
+        transition: stroke-dashoffset 0.3s;
+      }
+    }
+  }
+
+  .controller {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+
+    &__row {
+      display: flex;
+      gap: 30px;
+    }
+
+    .progressInput {
+      width: 50px;
+      height: 25px;
+
+      text-align: center;
+
+      border-radius: 25px;
+      border: 1px solid $mainColor;
+    }
+  }
+}
+
+// toggleSwitch
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  &_switch {
+    position: absolute;
+    cursor: pointer;
+    background-color: $greyColor;
+    border-radius: 25px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: background-color 0.2s ease;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 3px;
+      top: 3px;
+
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+
+      background-color: white;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  input[type="checkbox"]:checked + &_switch::before {
+    transform: translateX(25px);
+  }
+
+  input[type="checkbox"]:checked + &_switch {
+    background-color: $secondColor;
+  }
 }

@@ -13,15 +13,15 @@ export class ProgressBar {
         <div class="progressBar">
             <h3 class="progressBar_title">Progress</h3>
             <svg class="bar" width="100%" height="100%">
-                <circle class="defaultCircle"stroke="#f1f1f1"       stroke-width="8"cx="50%" cy="50%" r="28%"
+                <circle class="defaultCircle" stroke="#f1f1f1"       stroke-width="10" cx="50%" cy="50%" r="28%"
                 fill="transparent" />
-                <circle class="bar__circle" stroke="#1b40e2"    stroke-width="8" cx="50%" cy="50%" r="28%"
+                <circle class="bar__circle" stroke="#1b40e2"    stroke-width="10" cx="50%" cy="50%" r="28%"
                     fill="transparent" />
             </svg>
         </div>
         <div class="controller">
             <input id="progressInput" type="number" min="0" max="100"/>
-            <label>value</label>
+            <label>Value</label>
         </div>
     </section>
     `;
