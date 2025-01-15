@@ -1,3 +1,6 @@
+.progressWrapper {
+  color: red;
+}
 /* Reset and base styles  */
 * {
   padding: 0px;
