@@ -1,0 +1,10 @@
+# CSS карты исходников (source maps)
+*.css.map
+
+# Node.js папка с зависимостями
+node_modules/
+
+# Системные файлы и временные файлы IDE
+*.log
+.idea/
+.vscode/
