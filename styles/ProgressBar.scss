@@ -1,6 +1,13 @@
 .progressWrapper {
-  color: red;
+  padding: 14px;
 
   .progressBar {
+    .bar {
+      &__circle {
+        transform-origin: center;
+        transform: rotate(-90deg);
+        transition: stroke-dashoffset 0.3s;
+      }
+    }
   }
 }

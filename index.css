@@ -1,6 +1,14 @@
 .progressWrapper {
-  color: red;
+  padding: 14px;
 }
+.progressWrapper .progressBar .bar__circle {
+  stroke-dasharray: 50 10;
+  stroke-dashoffset: 50;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 0.3s;
+}
+
 /* Reset and base styles  */
 * {
   padding: 0px;
@@ -100,5 +108,9 @@ legend {
 
 html,
 body {
+  height: 100%;
+}
+
+.root {
   height: 100%;
 }/*# sourceMappingURL=index.css.map */
