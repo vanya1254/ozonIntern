@@ -1,6 +1,5 @@
 @use "./styles/vars" as *;
 @use "./styles/mixins" as *;
-@use "./styles/keyframes" as *;
 
 :root {
   --grey-color: #f2f2f2;
@@ -147,6 +146,11 @@ body {
         transform-origin: center;
         transform: rotate(-90deg);
       }
+    }
+
+    .hidden {
+      visibility: hidden;
+      opacity: 0;
     }
   }
 

@@ -75,6 +75,19 @@ export class ProgressBar {
         this.stopAnimate();
       }
     });
+
+    //Hide for progressBar
+    this.hideCheckbox = this.container.querySelector("#hide");
+    this.hideCheckbox.addEventListener("change", (e) => {
+      this.state = this.state === "Hidden" ? "Normal" : "Hidden";
+      e.target.checked = this.state === "Hidden";
+
+      if (e.target.checked) {
+        this.hide();
+      } else {
+        this.show();
+      }
+    });
   }
 
   setValue(value) {
@@ -109,5 +122,17 @@ export class ProgressBar {
 
     clearInterval(this.timer);
     this.timer = null;
+  }
+
+  hide() {
+    this.bar = this.container.querySelector(".bar");
+
+    this.bar.classList.add("hidden");
+  }
+
+  show() {
+    this.bar = this.container.querySelector(".bar");
+
+    this.bar.classList.remove("hidden");
   }
 }

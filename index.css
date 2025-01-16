@@ -7,8 +7,7 @@
   padding: 0px;
   margin: 0px;
   border: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 600;
 }
 
@@ -73,7 +72,7 @@ input::-ms-clear {
 }
 
 button,
-input[type="submit"] {
+input[type=submit] {
   display: inline-block;
   box-shadow: none;
   background-color: transparent;
@@ -129,6 +128,10 @@ body {
   transform-origin: center;
   transform: rotate(-90deg);
 }
+.progressWrapper .progressBar .hidden {
+  visibility: hidden;
+  opacity: 0;
+}
 .progressWrapper .controller {
   display: flex;
   flex-direction: column;
@@ -152,7 +155,7 @@ body {
   width: 50px;
   height: 25px;
 }
-.toggle input[type="checkbox"] {
+.toggle input[type=checkbox] {
   display: none;
 }
 .toggle_switch {
@@ -177,9 +180,9 @@ body {
   background-color: white;
   transition: transform 0.3s ease;
 }
-input[type="checkbox"]:checked + .toggle_switch::before {
+input[type=checkbox]:checked + .toggle_switch::before {
   transform: translateX(25px);
 }
-input[type="checkbox"]:checked + .toggle_switch {
+input[type=checkbox]:checked + .toggle_switch {
   background-color: #1b40e2;
-} /*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
