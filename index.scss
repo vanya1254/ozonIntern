@@ -1,5 +1,6 @@
 @use "./styles/vars" as *;
 @use "./styles/mixins" as *;
+@use "./styles/keyframes" as *;
 
 :root {
   --grey-color: #f2f2f2;
@@ -145,7 +146,6 @@ body {
       &__circle {
         transform-origin: center;
         transform: rotate(-90deg);
-        transition: stroke-dashoffset 0.3s;
       }
     }
   }
