@@ -4,7 +4,7 @@ export class ProgressBar {
     this.state = "Normal"; // 'Normal', 'Animated', 'Hidden'
     this.value = 0;
     this.step = 1;
-    this.timer = null;
+    this.timer = undefined;
 
     this.init();
   }
@@ -48,7 +48,6 @@ export class ProgressBar {
     this.circle = this.container.querySelector(".bar__circle");
     this.radius = this.circle.r.baseVal.value;
     this.circumference = 2 * Math.PI * this.radius;
-    console.log(`Radius: ${this.radius}, Circumference: ${this.circumference}`);
 
     this.circle.style.strokeDasharray = `${this.circumference} ${this.circumference}`;
     this.circle.style.strokeDashoffset = `${this.circumference}`;
@@ -98,9 +97,6 @@ export class ProgressBar {
 
     if (this.circumference) {
       const offset = this.circumference - (value / 100) * this.circumference;
-      console.log(
-        `Value: ${value}, Offset: ${offset}, Circumference: ${this.circumference}`
-      );
       this.circle.style.strokeDashoffset = offset;
     }
   }
@@ -108,7 +104,7 @@ export class ProgressBar {
   startAnimate() {
     this.state = "Animated";
 
-    if (this.timer) return;
+    if (this.timer !== undefined) return;
 
     this.timer = setInterval(() => {
       this.value = (this.value + this.step) % 101;
@@ -120,8 +116,10 @@ export class ProgressBar {
   stopAnimate() {
     this.state = "Normal";
 
-    clearInterval(this.timer);
-    this.timer = null;
+    if (this.timer !== undefined) {
+      clearInterval(this.timer);
+      this.timer = undefined;
+    }
   }
 
   hide() {
