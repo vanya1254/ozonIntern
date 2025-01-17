@@ -14,10 +14,10 @@ export class ProgressBar {
     <section class="progressWrapper">
       <h3 class="progressTitle">Progress</h3>
       <div class="progressBar">
-          <svg class="bar" width="100%" height="100%" aria-label="Progress Bar" viewBox="0 0 100% 100%">
-              <circle class="defaultCircle" stroke="var(--grey-color)" stroke-width="10" cx="50%" cy="50%"  r="22%"
+          <svg class="bar" width="100%" height="100%" aria-label="Progress Bar" viewBox="0 0 100 100">
+              <circle class="defaultCircle" stroke="var(--grey-color)" stroke-width="6" cx="50%" cy="50%"  r="30%"
                 fill="transparent" />
-              <circle class="bar__circle" stroke="var(--primaryBlue-color)"  stroke-width="10" cx="50%" cy="50%" r="22%"
+              <circle class="bar__circle" stroke="var(--primaryBlue-color)"  stroke-width="6" cx="50%" cy="50%" r="30%"
                 fill="transparent">
               </circle>
           </svg>
@@ -25,7 +25,7 @@ export class ProgressBar {
       <div class="controller">
         <div class="controller__col">
           <div class="controller__row">
-              <input class="progressInput" id="progressInput"   type="number" min="0" max="100" placeholder="100" aria-label="Progress Value" />
+              <input class="progressInput" id="progressInput"   type="number" min="0" max="100" placeholder="100" aria-label="Progress Value" inputmode="numeric" step="1" />
               <label for="progressInput">Value</label>
           </div>
           <div class="controller__row">
