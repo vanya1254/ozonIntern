@@ -1,5 +1,6 @@
 :root {
   --grey-color: #f2f2f2;
+  --primaryBlue-color: #1b40e2;
 }
 
 /* Reset and base styles  */
@@ -48,12 +49,6 @@ p {
 ul,
 ul li {
   list-style: none;
-}
-
-img,
-svg {
-  max-width: 100%;
-  height: auto;
 }
 
 /* Form */
@@ -111,18 +106,27 @@ body {
 
 .progressWrapper {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10%;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 11%;
   height: 100%;
-  padding: 16px;
+  padding: 20px;
 }
 .progressWrapper .progressTitle {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 20px;
+  left: 20px;
+}
+.progressWrapper .progressBar {
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(5, 20%);
+  grid-row-start: 1;
+  grid-row-end: 6;
+}
+.progressWrapper .progressBar .bar {
+  grid-row-start: 2;
+  grid-row-end: 6;
 }
 .progressWrapper .progressBar .bar__circle {
   transform-origin: center;
@@ -135,15 +139,23 @@ body {
 .progressWrapper .controller {
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  align-items: center;
+  height: 100%;
+  grid-row-end: 11;
+  grid-row-start: 6;
+}
+.progressWrapper .controller__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .progressWrapper .controller__row {
   display: flex;
-  gap: 30px;
+  gap: 18px;
 }
 .progressWrapper .controller .progressInput {
-  width: 50px;
-  height: 25px;
+  width: 46px;
+  height: 27px;
   text-align: center;
   border-radius: 25px;
   border: 1px solid #000001;
@@ -152,8 +164,8 @@ body {
 .toggle {
   position: relative;
   display: inline-block;
-  width: 50px;
-  height: 25px;
+  width: 46px;
+  height: 27px;
 }
 .toggle input[type=checkbox] {
   display: none;
@@ -162,7 +174,7 @@ body {
   position: absolute;
   cursor: pointer;
   background-color: #f2f2f2;
-  border-radius: 25px;
+  border-radius: 27px;
   top: 0;
   right: 0;
   bottom: 0;
@@ -172,16 +184,16 @@ body {
 .toggle_switch::before {
   position: absolute;
   content: "";
-  left: 3px;
-  top: 3px;
-  width: 19px;
-  height: 19px;
+  left: 2px;
+  top: 2px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
   background-color: white;
   transition: transform 0.3s ease;
 }
 input[type=checkbox]:checked + .toggle_switch::before {
-  transform: translateX(25px);
+  transform: translateX(19px);
 }
 input[type=checkbox]:checked + .toggle_switch {
   background-color: #1b40e2;
