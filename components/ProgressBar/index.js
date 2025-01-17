@@ -65,6 +65,11 @@ export class ProgressBar {
     //Animate for progressBar
     this.animateChekbox = this.container.querySelector("#animate");
     this.animateChekbox.addEventListener("change", (e) => {
+      if (this.state === "Hidden") {
+        this.resetStates();
+        this.hideCheckbox.checked = false;
+      }
+
       this.state = this.state === "Animated" ? "Normal" : "Animated";
       e.target.checked = this.state === "Animated";
 
@@ -78,6 +83,11 @@ export class ProgressBar {
     //Hide for progressBar
     this.hideCheckbox = this.container.querySelector("#hide");
     this.hideCheckbox.addEventListener("change", (e) => {
+      if (this.state === "Animated") {
+        this.resetStates();
+        this.animateChekbox.checked = false;
+      }
+
       this.state = this.state === "Hidden" ? "Normal" : "Hidden";
       e.target.checked = this.state === "Hidden";
 
@@ -99,6 +109,17 @@ export class ProgressBar {
       const offset = this.circumference - (value / 100) * this.circumference;
       this.circle.style.strokeDashoffset = offset;
     }
+  }
+
+  resetStates() {
+    if (this.timer !== undefined) {
+      clearInterval(this.timer);
+      this.timer = undefined;
+    }
+
+    this.bar = this.container.querySelector(".bar");
+    this.bar.classList.remove("hidden");
+    this.state = "Normal";
   }
 
   startAnimate() {
