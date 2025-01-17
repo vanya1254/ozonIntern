@@ -133,6 +133,12 @@ export class ProgressBar {
     }
 
     this.state = newState;
+    this.updateControls();
+  }
+
+  updateControls() {
+    this.animateChekbox.checked = this.state === "Animated";
+    this.hideCheckbox.checked = this.state === "Hidden";
   }
 
   resetStates() {
