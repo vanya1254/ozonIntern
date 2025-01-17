@@ -1,11 +1,17 @@
 {
+  "homepage": "http://vanya1254.github.io/ozonIntern/",
   "name": "ozonintern",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "",
+    "deploy": "gh-pages -d build"
   },
   "author": "vanya1254",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
