@@ -65,9 +65,23 @@ export class ProgressBar {
     //Input for progressBar
 
     this.input.addEventListener("change", (e) => {
-      const value = Number.parseInt(e.target.value, 10) || 0;
+      let value = e.target.value.replace(/[^0-9]/g, "");
+      value = Math.min(Math.max(Number.parseInt(value || "0", 10), 0), 100);
 
-      this.setValue(value);
+      e.target.value = value;
+    });
+
+    // Input check
+
+    this.input.addEventListener("change", (e) => {
+      let value = Number.parseInt(e.target.value, 10);
+
+      if (Number.isNaN(value) || value < 0 || value > 100) {
+        alert("Enter number from 0 to 100");
+        e.target.value = this.value;
+      } else {
+        this.setValue(value);
+      }
     });
 
     //Animate for progressBar
@@ -92,8 +106,7 @@ export class ProgressBar {
   }
 
   setValue(value) {
-    if (value < 0) value = 0;
-    if (value > 100) value = 100;
+    value = Math.min(Math.max(value, 0), 100);
 
     this.value = value;
 
