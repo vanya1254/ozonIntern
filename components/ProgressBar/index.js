@@ -14,7 +14,7 @@ export class ProgressBar {
     <section class="progressWrapper">
       <h3 class="progressTitle">Progress</h3>
       <div class="progressBar">
-          <svg class="bar" width="100%" height="100%">
+          <svg class="bar" width="100%" height="100%" aria-label="Progress Bar">
               <circle class="defaultCircle" stroke="var(--grey-color)" stroke-width="10" cx="50%" cy="50%"  r="22%"
                 fill="transparent" />
               <circle class="bar__circle" stroke="var(--primaryBlue-color)"  stroke-width="10" cx="50%" cy="50%" r="22%"
@@ -25,19 +25,19 @@ export class ProgressBar {
       <div class="controller">
         <div class="controller__col">
           <div class="controller__row">
-              <input class="progressInput" id="progressInput"   type="number" min="0" max="100" placeholder="100" />
+              <input class="progressInput" id="progressInput"   type="number" min="0" max="100" placeholder="100" aria-label="Progress Value" />
               <label for="progressInput">Value</label>
           </div>
           <div class="controller__row">
               <label class="toggle" for="animate">
-                  <input type="checkbox" id="animate" />
+                  <input type="checkbox" id="animate" aria-label="Toggle Animation" />
                   <span class="toggle_switch"></span>
               </label>
               <p>Animate</p>
           </div>
           <div class="controller__row">
               <label class="toggle" for="hide">
-                  <input type="checkbox" id="hide" />
+                  <input type="checkbox" id="hide" aria-label="Toggle Visibility" />
                   <span class="toggle_switch"></span>
               </label>
               <p>Hide</p>
@@ -54,49 +54,39 @@ export class ProgressBar {
     this.circle.style.strokeDasharray = `${this.circumference} ${this.circumference}`;
     this.circle.style.strokeDashoffset = `${this.circumference}`;
 
-    //Input for progressBar
     this.input = this.container.querySelector("#progressInput");
+    this.animateChekbox = this.container.querySelector("#animate");
+    this.hideCheckbox = this.container.querySelector("#hide");
+
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    //Input for progressBar
+
     this.input.addEventListener("change", (e) => {
-      const value = Number.parseInt(e.target.value)
-        ? Number.parseInt(e.target.value)
-        : 0;
+      const value = Number.parseInt(e.target.value, 10) || 0;
 
       this.setValue(value);
     });
 
     //Animate for progressBar
-    this.animateChekbox = this.container.querySelector("#animate");
+
     this.animateChekbox.addEventListener("change", (e) => {
-      if (this.state === "Hidden") {
-        this.resetStates();
-        this.hideCheckbox.checked = false;
-      }
-
-      this.state = this.state === "Animated" ? "Normal" : "Animated";
-      e.target.checked = this.state === "Animated";
-
       if (e.target.checked) {
-        this.startAnimate();
+        this.setState("Animated");
       } else {
-        this.stopAnimate();
+        this.setState("Normal");
       }
     });
 
     //Hide for progressBar
-    this.hideCheckbox = this.container.querySelector("#hide");
+
     this.hideCheckbox.addEventListener("change", (e) => {
-      if (this.state === "Animated") {
-        this.resetStates();
-        this.animateChekbox.checked = false;
-      }
-
-      this.state = this.state === "Hidden" ? "Normal" : "Hidden";
-      e.target.checked = this.state === "Hidden";
-
       if (e.target.checked) {
-        this.hide();
+        this.setState("Hidden");
       } else {
-        this.show();
+        this.setState("Normal");
       }
     });
   }
@@ -113,20 +103,35 @@ export class ProgressBar {
     }
   }
 
+  setState(newState) {
+    if (newState === this.state) return;
+
+    this.resetStates();
+
+    switch (newState) {
+      case "Animated":
+        this.startAnimate();
+        break;
+      case "Hidden":
+        this.hide();
+        break;
+      default:
+        this.show();
+    }
+
+    this.state = newState;
+  }
+
   resetStates() {
     if (this.timer !== undefined) {
       clearInterval(this.timer);
       this.timer = undefined;
     }
 
-    this.bar = this.container.querySelector(".bar");
-    this.bar.classList.remove("hidden");
-    this.state = "Normal";
+    this.show();
   }
 
   startAnimate() {
-    this.state = "Animated";
-
     if (this.timer !== undefined) return;
 
     this.timer = setInterval(() => {
@@ -134,15 +139,6 @@ export class ProgressBar {
 
       this.setValue(this.value);
     }, 30);
-  }
-
-  stopAnimate() {
-    this.state = "Normal";
-
-    if (this.timer !== undefined) {
-      clearInterval(this.timer);
-      this.timer = undefined;
-    }
   }
 
   hide() {
