@@ -150,6 +150,47 @@ legend {
   border: 1px solid #000001;
 }
 
+@media (orientation: landscape) {
+  .progressWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .progressWrapper .progressBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+  .progressWrapper .progressBar .bar {
+    grid-row: unset;
+  }
+  .progressWrapper .controller {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: none;
+    justify-content: space-evenly;
+    flex: 0.5;
+  }
+}
+@media (min-width: 425px) {
+  .progressWrapper .controller__col {
+    gap: 16px;
+  }
+}
+@media (min-width: 768px) {
+  .progressWrapper .controller__col {
+    gap: 24px;
+  }
+  .progressWrapper .controller .progressInput {
+    width: 55px;
+    height: 35px;
+    border-radius: 35px;
+  }
+}
 :root {
   --grey-color: #f2f2f2;
   --primaryBlue-color: #395cf8;
@@ -200,4 +241,29 @@ input[type=checkbox]:checked + .toggle_switch::before {
 }
 input[type=checkbox]:checked + .toggle_switch {
   background-color: #395cf8;
+}
+
+@media (min-width: 425px) {
+  body {
+    font-size: 20px;
+  }
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 24px;
+  }
+  .toggle {
+    width: 55px;
+    height: 35px;
+  }
+  .toggle_switch {
+    border-radius: 30px;
+  }
+  .toggle_switch::before {
+    width: 31px;
+    height: 31px;
+  }
+  input[type=checkbox]:checked + .toggle_switch::before {
+    transform: translateX(20px);
+  }
 }/*# sourceMappingURL=index.css.map */

@@ -26,8 +26,8 @@ body {
 .toggle {
   position: relative;
   display: inline-block;
-  width: $input-width;
-  height: $input-height;
+  width: map-get($input-width, 320px);
+  height: map-get($input-height, 320px);
 
   input[type="checkbox"] {
     display: none;
@@ -65,5 +65,37 @@ body {
 
   input[type="checkbox"]:checked + &_switch {
     background-color: $secondColor;
+  }
+}
+
+// media
+
+@media (min-width: 425px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 24px;
+  }
+
+  .toggle {
+    width: map-get($input-width, 768px);
+    height: map-get($input-height, 768px);
+
+    &_switch {
+      border-radius: 30px;
+
+      &::before {
+        width: 31px;
+        height: 31px;
+      }
+    }
+
+    input[type="checkbox"]:checked + &_switch::before {
+      transform: translateX(20px);
+    }
   }
 }
