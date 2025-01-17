@@ -1,0 +1,101 @@
+@use "./styles/reset" as *;
+@use "./styles/vars" as *;
+@use "./styles/mixins" as *;
+@use "./components/index" as *;
+
+:root {
+  --grey-color: #f2f2f2;
+  --primaryBlue-color: #395cf8;
+}
+
+// start here
+
+html,
+body {
+  height: 100%;
+}
+
+// app
+
+#root {
+  height: 100%;
+}
+
+// toggleSwitch
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: map-get($input-width, 320px);
+  height: map-get($input-height, 320px);
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  &_switch {
+    position: absolute;
+    cursor: pointer;
+    background-color: $greyColor;
+    border-radius: 27px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: background-color 0.2s ease;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 2px;
+      top: 2px;
+
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+
+      background-color: white;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  input[type="checkbox"]:checked + &_switch::before {
+    transform: translateX(19px);
+  }
+
+  input[type="checkbox"]:checked + &_switch {
+    background-color: $secondColor;
+  }
+}
+
+// media
+
+@media (min-width: 425px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 24px;
+  }
+
+  .toggle {
+    width: map-get($input-width, 768px);
+    height: map-get($input-height, 768px);
+
+    &_switch {
+      border-radius: 30px;
+
+      &::before {
+        width: 31px;
+        height: 31px;
+      }
+    }
+
+    input[type="checkbox"]:checked + &_switch::before {
+      transform: translateX(20px);
+    }
+  }
+}

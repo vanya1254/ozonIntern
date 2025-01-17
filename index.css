@@ -1,0 +1,269 @@
+/* Reset and base styles  */
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Links */
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Common */
+section,
+main {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+
+/* Form */
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button,
+input[type=submit] {
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+.progressWrapper {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: auto;
+  gap: 11%;
+  position: relative;
+  height: 100%;
+  padding: 20px;
+}
+.progressWrapper .progressTitle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.progressWrapper .progressBar {
+  display: grid;
+  grid-template-rows: repeat(5, 20%);
+  grid-template-columns: auto;
+  gap: 0;
+  grid-row: 1/6;
+  height: 100%;
+}
+.progressWrapper .progressBar .bar {
+  grid-row: 2/6;
+}
+.progressWrapper .progressBar .bar__circle {
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+.progressWrapper .progressBar .hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.progressWrapper .controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+  grid-row: 6/11;
+}
+.progressWrapper .controller__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.progressWrapper .controller__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+}
+.progressWrapper .controller .progressInput {
+  width: 46px;
+  height: 27px;
+  text-align: center;
+  border-radius: 25px;
+  border: 1px solid #000001;
+}
+
+@media (orientation: landscape) {
+  .progressWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .progressWrapper .progressBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+  .progressWrapper .progressBar .bar {
+    grid-row: unset;
+  }
+  .progressWrapper .controller {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: none;
+    justify-content: space-evenly;
+    flex: 0.5;
+  }
+}
+@media (min-width: 425px) {
+  .progressWrapper .controller__col {
+    gap: 16px;
+  }
+}
+@media (min-width: 768px) {
+  .progressWrapper .controller__col {
+    gap: 24px;
+  }
+  .progressWrapper .controller .progressInput {
+    width: 55px;
+    height: 35px;
+    border-radius: 35px;
+  }
+}
+:root {
+  --grey-color: #f2f2f2;
+  --primaryBlue-color: #395cf8;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 27px;
+}
+.toggle input[type=checkbox] {
+  display: none;
+}
+.toggle_switch {
+  position: absolute;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  border-radius: 27px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: background-color 0.2s ease;
+}
+.toggle_switch::before {
+  position: absolute;
+  content: "";
+  left: 2px;
+  top: 2px;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+input[type=checkbox]:checked + .toggle_switch::before {
+  transform: translateX(19px);
+}
+input[type=checkbox]:checked + .toggle_switch {
+  background-color: #395cf8;
+}
+
+@media (min-width: 425px) {
+  body {
+    font-size: 20px;
+  }
+}
+@media (min-width: 768px) {
+  body {
+    font-size: 24px;
+  }
+  .toggle {
+    width: 55px;
+    height: 35px;
+  }
+  .toggle_switch {
+    border-radius: 30px;
+  }
+  .toggle_switch::before {
+    width: 31px;
+    height: 31px;
+  }
+  input[type=checkbox]:checked + .toggle_switch::before {
+    transform: translateX(20px);
+  }
+}/*# sourceMappingURL=index.css.map */
