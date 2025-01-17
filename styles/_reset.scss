@@ -99,3 +99,13 @@ label {
 legend {
   display: block;
 }
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Убирает стрелки на десктопах */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Убирает стрелки на мобильных устройствах */
+  margin: 0;
+}
