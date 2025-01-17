@@ -45,7 +45,9 @@
     grid-row: 6/11;
 
     &__col {
-      @include flex-center(column, 12px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     &__row {
