@@ -4,6 +4,7 @@ export class ProgressBar {
     this.state = "Normal"; // 'Normal', 'Animated', 'Hidden'
     this.value = 0;
     this.step = 1;
+    this.rotation = -90;
     this.timer = undefined;
 
     this.init();
@@ -47,6 +48,7 @@ export class ProgressBar {
     </section>
     `;
 
+    this.bar = this.container.querySelector(".bar");
     this.circle = this.container.querySelector(".bar__circle");
     this.radius = this.circle.r.baseVal.value;
     this.circumference = 2 * Math.PI * this.radius;
@@ -143,7 +145,9 @@ export class ProgressBar {
 
   resetStates() {
     if (this.timer !== undefined) {
-      clearInterval(this.timer);
+      cancelAnimationFrame(this.timer); // clearInterval(this.timer);
+      this.rotation = -90;
+      this.circle.style.transform = `rotate(${this.rotation}deg)`;
       this.timer = undefined;
     }
 
@@ -153,22 +157,27 @@ export class ProgressBar {
   startAnimate() {
     if (this.timer !== undefined) return;
 
-    this.timer = setInterval(() => {
-      this.value = (this.value + this.step) % 101;
+    const rotate = () => {
+      this.rotation = (this.rotation + this.step) % 360;
+      this.circle.style.transform = `rotate(${this.rotation}deg)`;
+      this.circle.style.transformOrigin = `50% 50%`;
+      this.timer = requestAnimationFrame(rotate);
+    };
 
-      this.setValue(this.value);
-    }, 30);
+    rotate();
+
+    // this.timer = setInterval(() => {
+    //   this.value = (this.value + this.step) % 101;
+
+    //   this.setValue(this.value);
+    // }, 30);
   }
 
   hide() {
-    this.bar = this.container.querySelector(".bar");
-
     this.bar.classList.add("hidden");
   }
 
   show() {
-    this.bar = this.container.querySelector(".bar");
-
     this.bar.classList.remove("hidden");
   }
 }
